@@ -15,19 +15,18 @@
  * @author       Fabiano Gato <fabianogattoti@gmail.com>
  *
  */
-declare(strict_types=1);
 
-namespace Idea\Framework\Repository\System;
+namespace Idea\Framework\Repository\PaymentsMethods;
 
-use App\Models\SysCarrier;
+use App\Models\PaymentsMethod;
 use Idea\Framework\Repository\AbstractRepository;
 
-class SysCarrierRepository extends AbstractRepository
+class PaymentsMethodRepository extends AbstractRepository
 {
 
-    protected static $model = SysCarrier::class;
+    protected static $model = PaymentsMethod::class;
 
-    public static function updateOrCreate(?int $id, array $values = []): SysCarrier
+    public static function updateOrCreate(?int $id, array $values = []): PaymentsMethod
     {
 
         return self::getData()->updateOrCreate(
@@ -38,5 +37,6 @@ class SysCarrierRepository extends AbstractRepository
         );
 
     }
+
 
 }

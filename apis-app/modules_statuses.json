@@ -3,5 +3,6 @@
     "Mercadolivre": true,
     "Pagarme": true,
     "System": true,
-    "Sales": true
+    "Sales": true,
+    "PaymentMethods": true
 }

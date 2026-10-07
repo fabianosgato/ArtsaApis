@@ -15,12 +15,12 @@
  * @author       Fabiano Gato <fabianogattoti@gmail.com>
  *
  */
-namespace Modules\System\Http\Controllers\Wsdadm;
 
-use App\Models\CatalogProductStatus;
-use Idea\Framework\Admin\AdminController;
+namespace Modules\PaymentMethods\Http\Controllers;
 
-class CatalogProductStatusController extends AdminController
+use App\Http\Controllers\Controller;
+
+class PaymentMethodsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -28,7 +28,7 @@ class CatalogProductStatusController extends AdminController
     public function index()
     {
         return view('wsdadm.partials.grids', [
-            'componentName' => 'system::grids.catalog-product-status-grid'
+            'componentName' => 'paymentmethods::grids.payment-methods-grid'
         ]);
     }
 
@@ -39,7 +39,7 @@ class CatalogProductStatusController extends AdminController
     {
         // Retorna a View
         return view('wsdadm.partials.forms', [
-            'componentName' => 'system::form.catalog-product-status-form',
+            'componentName' => 'paymentmethods::form.payment-methods-form',
             'data' => []
         ]);
     }
@@ -49,17 +49,11 @@ class CatalogProductStatusController extends AdminController
      */
     public function edit($id)
     {
-
-        $catalogProductStatus = CatalogProductStatus::query()->where('status_id', '=', $id)
-            ->first()->toArray();
-
-        if ($catalogProductStatus) {
-            // Retorna a View
-            return view('wsdadm.partials.forms', [
-                'componentName' => 'system::form.catalog-product-status-form',
-                'data' => $catalogProductStatus
-            ]);
-        }
+        // Retorna a View
+        return view('wsdadm.partials.forms', [
+            'componentName' => 'paymentmethods::form.payment-methods-form',
+            'data' => []
+        ]);
 
     }
 
