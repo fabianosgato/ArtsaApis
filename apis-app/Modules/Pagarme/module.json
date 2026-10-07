@@ -1,0 +1,11 @@
+{
+    "name": "Pagarme",
+    "alias": "pagarme",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\Pagarme\\Providers\\PagarmeServiceProvider"
+    ],
+    "files": []
+}

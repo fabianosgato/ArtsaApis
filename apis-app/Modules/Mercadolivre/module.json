@@ -1,0 +1,11 @@
+{
+    "name": "Mercadolivre",
+    "alias": "mercadolivre",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\Mercadolivre\\Providers\\MercadolivreServiceProvider"
+    ],
+    "files": []
+}

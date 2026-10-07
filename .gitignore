@@ -8,6 +8,9 @@ apis-app/node_modules/
 apis-app/dist/
 apis-app/vendor/
 apis-app/public/vendor
+apis-app/.env
+apis-app/.env.example
+apis-app/storage
 
 # Compiled Java class files
 *.class
