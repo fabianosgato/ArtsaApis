@@ -32,7 +32,7 @@ class Api
     public static function getHeaders(): array
     {
         return [
-            "User-Agent: ArtsaShop Ecommerce",
+            "User-Agent: ArtsaApis",
             "Cache-Control: no-cache",
             'Content-Type: application/json',
             'Content-Type: multipart/form-data'
