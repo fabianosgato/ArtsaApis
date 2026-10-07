@@ -18,9 +18,10 @@
 
 namespace Modules\PaymentMethods\Http\Controllers;
 
-use App\Http\Controllers\Controller;
+use Idea\Framework\Admin\AdminController;
+use Idea\Framework\Repository\PaymentsMethods\PaymentsMethodRepository;
 
-class PaymentMethodsController extends Controller
+class PaymentMethodsController extends AdminController
 {
     /**
      * Display a listing of the resource.
@@ -49,10 +50,15 @@ class PaymentMethodsController extends Controller
      */
     public function edit($id)
     {
+
+        $data = PaymentsMethodRepository::loadModel()::query()->find(
+            $id
+        )->toArray();
+
         // Retorna a View
         return view('wsdadm.partials.forms', [
             'componentName' => 'paymentmethods::form.payment-methods-form',
-            'data' => []
+            'data' => $data
         ]);
 
     }

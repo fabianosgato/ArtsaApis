@@ -31,7 +31,7 @@ class PaymentsMethodRepository extends AbstractRepository
 
         return self::getData()->updateOrCreate(
             attributes: [
-                'carrier_id' => $id
+                'payment_id' => $id
             ],
             values: $values
         );

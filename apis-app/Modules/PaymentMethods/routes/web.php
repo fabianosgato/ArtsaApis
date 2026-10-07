@@ -39,7 +39,7 @@ Route::prefix('wsdadm')->middleware('auth')->group(function () {
 
             Route::get('edit/{id}', [PaymentMethodsController::class, 'edit'])
                 ->middleware('auth')
-                ->name('wsdadm.payments.view');
+                ->name('wsdadm.payments.edit');
 
             Route::get('insert', [PaymentMethodsController::class, 'insert'])
                 ->middleware('auth')

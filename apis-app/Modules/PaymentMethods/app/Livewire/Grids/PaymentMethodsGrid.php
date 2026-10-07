@@ -18,12 +18,101 @@
 
 namespace Modules\PaymentMethods\Livewire\Grids;
 
-use Livewire\Component;
+use App\Models\PaymentsMethod;
+use Filament\Actions\Action;
+use Filament\Actions\ActionGroup;
+use Filament\Actions\DeleteAction;
+use Filament\Notifications\Notification;
+use Filament\Tables;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Table;
+use Idea\Framework\Admin\Grids\Grid;
+use Idea\Framework\Repository\PaymentsMethods\PaymentsMethodRepository;
 
-class PaymentMethodsGrid extends Component
+
+final class PaymentMethodsGrid extends Grid
 {
-    public function render()
+
+    public string $heading = 'Método de Pagamentos para testes';
+    public string $primaryKey = 'payment_name';
+    public string $sortDirection = 'ASC';
+
+    public function table(Tables\Table $table): Tables\Table
     {
-        return view('paymentmethods::livewire.grids.payment-methods-grid');
+        return $table
+            ->query(PaymentsMethodRepository::getData())
+            ->heading($this->heading)
+            ->columns([
+                TextColumn::make('payment_name')
+                    ->label("Método de Pagamento")
+                    ->toggleable(false)
+                    ->searchable(['payment_name']),
+
+                TextColumn::make('payment_key')
+                    ->label("Key")
+                    ->verticallyAlignCenter()
+                    ->alignCenter()
+                    ->toggleable(false)
+                    ->searchable(['payment_key']),
+
+                TextColumn::make('payment_secret')
+                    ->label("Secret Key")
+                    ->verticallyAlignCenter()
+                    ->alignCenter()
+                    ->toggleable(false)
+                    ->searchable(['payment_secret']),
+
+                TextColumn::make('status')
+                    ->label("Ativo")
+                    ->toggleable(false)
+                    ->verticallyAlignCenter()
+                    ->alignCenter()
+                    ->searchable(['sys_users.status'])
+                    ->formatStateUsing(function ($state) {
+                        return ($state == 1 ? 'Habilitado' : 'Desabilitado');
+                    })
+                    ->extraHeaderAttributes([
+                        'class' => 'w-8'
+                    ]),
+
+            ])
+            ->recordActions([
+
+                ActionGroup::make([
+
+                    // Edicao do Grupo
+                    Action::make('edit')
+                        ->label('Editar')
+                        ->url(fn(PaymentsMethod $record): string => route('wsdadm.payments.edit', [
+                            'id' => $record->payment_id
+                        ])),
+
+                    DeleteAction::make()
+                        ->label('Excluir')
+                        ->icon(null)
+                        ->modalHeading("Excluir Método de Pagamento")
+                        ->modalDescription("Deseja Excluir esse Método de Pagamento?")
+                        ->successNotification(
+                            Notification::make()
+                                ->success()
+                                ->title('Módulo do sistema Excluído')
+                                ->body('O Método de Pagamento foi excluido com sucesso'),
+                        ),
+
+                ])
+            ])
+            ->paginationPageOptions(
+                options: $this->paginationPageOptions
+            )
+            ->striped()
+            ->recordUrl(null)
+            ->defaultSort(
+                column: $this->primaryKey,
+                direction: $this->sortDirection
+            )
+            ->persistFiltersInSession();
+
+
     }
+
 }
