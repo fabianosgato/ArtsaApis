@@ -20,14 +20,10 @@
 
 use Illuminate\Support\Facades\Route;
 
-// Rota padrao para o Dashboard
-Route::get('/', [\App\Http\Controllers\Backend\Dashboard::class, 'index'])
-    ->name('dashboard');
-
 // Rotas para o "profile" do usuario
 Route::middleware('auth')->group(function () {
 
-    Route::get('/wsdadm', [\App\Http\Controllers\Backend\Dashboard::class, 'index'])
+    Route::get('/', [\App\Http\Controllers\Backend\Dashboard::class, 'index'])
         ->name('wsdadm.dashboard');
 
     Route::get('/profile', [\App\Http\Controllers\Backend\ProfileController::class, 'edit'])

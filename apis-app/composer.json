@@ -18,8 +18,10 @@
         "filament/infolists": "^5.0",
         "filament/notifications": "^5.0",
         "filament/schemas": "^5.0",
+        "filament/support": "^5.10",
         "filament/tables": "^5.0",
         "filament/widgets": "^5.0",
+        "idea/framework": "@dev",
         "jeroennoten/laravel-adminlte": "^3.11",
         "laravel/framework": "^12.0",
         "laravel/sanctum": "^4.3",
@@ -28,8 +30,7 @@
         "livewire/livewire": "*",
         "mhmiton/laravel-modules-livewire": "^6.2",
         "nwidart/laravel-modules": "^12.0",
-        "wireui/wireui": "^2.6",
-        "idea/framework": "@dev"
+        "wireui/wireui": "^2.6"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",

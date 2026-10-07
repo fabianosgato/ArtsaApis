@@ -18,7 +18,6 @@
 
 namespace Modules\Sales\Livewire\Grid;
 
-use AlperenErsoy\FilamentExport\Actions\FilamentExportBulkAction;
 use App\Models\SalesOrder;
 use App\Models\SalesOrderStatus;
 use Filament\Actions\Action;
@@ -144,15 +143,6 @@ class SalesOrderGrid extends Grid
                         ->label('Informação Rápida')
                         ->action(fn(SalesOrder $record) => $this->showView($record->order_id)),
                 ])
-            ])
-            ->toolbarActions([
-                FilamentExportBulkAction::make('export')
-                    ->label('Exportar')
-                    ->fileNameFieldLabel('Nome do Arquivo')
-                    ->csvDelimiter(';')
-                    ->defaultFormat('csv')
-                    ->disablePdf()
-                    ->disableXlsx()
             ])
             ->paginationPageOptions(
                 options: $this->paginationPageOptions

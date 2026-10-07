@@ -11,6 +11,7 @@ apis-app/public/vendor
 apis-app/.env
 apis-app/.env.example
 apis-app/storage
+apis-app/public/build
 
 # Compiled Java class files
 *.class

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "bbfee8ea9a33430f1895fbd220b5b2df",
+    "content-hash": "6022043c716648abe8d8cf15fee24836",
     "packages": [
         {
             "name": "almasaeed2010/adminlte",
@@ -2059,7 +2059,7 @@
         },
         {
             "name": "idea/framework",
-            "version": "dev-master",
+            "version": "dev-main",
             "dist": {
                 "type": "path",
                 "url": "lib/Idea/Framework",
