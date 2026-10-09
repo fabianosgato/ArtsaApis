@@ -43,5 +43,4 @@ class StoreController extends Controller
 
     }
 
-
 }

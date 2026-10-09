@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Fabiano Gato
  *
@@ -18,30 +17,32 @@
  * Rotas padroes do sistema
  */
 
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\Backend\Dashboard;
+use App\Http\Controllers\Backend\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 // Login na raiz
-Route::get('/', [\App\Http\Controllers\Auth\AuthenticatedSessionController::class, 'create'])
-    ->middleware('guest')->name('login');
+Route::get('/', [AuthenticatedSessionController::class, 'create'])
+    ->middleware('guest')
+    ->name('login');
 
-// Rotas para o "profile" do usuario
+// Rotas protegidas
 Route::middleware('auth')->group(function () {
-
-    Route::get('/', [\App\Http\Controllers\Backend\Dashboard::class, 'index'])
+    Route::get('/wsdadm', [Dashboard::class, 'index'])
         ->name('wsdadm.dashboard');
 
-    Route::get('/profile', [\App\Http\Controllers\Backend\ProfileController::class, 'edit'])
+    Route::get('/profile', [ProfileController::class, 'edit'])
         ->name('profile.edit');
 
-    Route::patch('/profile', [\App\Http\Controllers\Backend\ProfileController::class, 'update'])
+    Route::patch('/profile', [ProfileController::class, 'update'])
         ->name('profile.update');
 
-    Route::delete('/profile', [\App\Http\Controllers\Backend\ProfileController::class, 'destroy'])
+    Route::delete('/profile', [ProfileController::class, 'destroy'])
         ->name('profile.destroy');
 
-    Route::get('/wsdadm/manual', [\App\Http\Controllers\Backend\Dashboard::class, 'manual'])
+    Route::get('/wsdadm/manual', [Dashboard::class, 'manual'])
         ->name('wsdadm.manual');
-
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

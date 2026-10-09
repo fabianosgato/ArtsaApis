@@ -25,7 +25,6 @@ use Filament\Actions\ActionGroup;
 use Filament\Tables;
 use Filament\Tables\Columns\TextColumn;
 use Idea\Framework\Admin\Grids\Grid;
-use Idea\Framework\Admin\SystemConfig;
 use Idea\Framework\Repository\Sales\SalesOrderRepository;
 use Idea\Framework\Utils;
 use Illuminate\Support\Facades\Cache;
@@ -150,7 +149,7 @@ class SalesOrderGrid extends Grid
             ->recordClasses(fn(SalesOrder $record) => match ($record->status) {
                 'complete' => 'adm-bg-complete',
                 'approved' => 'adm-bg-approved',
-                'shipped' => SystemConfig::setColorOrder($record),
+                'shipped' => $this->setColorOrder($record),
                 'returned' => 'adm-bg-returned',
                 'refunded' => 'adm-bg-refunded',
                 'canceled_marketplace' => 'adm-bg-red-50',

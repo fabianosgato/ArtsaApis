@@ -8,12 +8,11 @@ use Tests\TestCase;
 class ExampleTest extends TestCase
 {
     /**
-     * A basic test example.
+     * Testa se a aplicação está realmente funcional.
      */
     public function test_the_application_returns_a_successful_response(): void
     {
         $response = $this->get('/');
-
         $response->assertStatus(200);
     }
 }

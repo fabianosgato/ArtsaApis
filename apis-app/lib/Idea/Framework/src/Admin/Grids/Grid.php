@@ -53,4 +53,35 @@ class Grid extends Component implements HasForms, HasTable, HasActions
         return view('wsdadm.partials.tables');
     }
 
+    /**
+     * Metodo responsavel por setar a cor quando oo pedido esta como Entregue, porem o status no BBexp está diferente
+     * @param $record
+     * @return string|void
+     */
+    public static function setColorOrder($record)
+    {
+
+        // Classe CSS padrao para retorno
+        $cssClass = 'adm-bg-shipped';
+
+        if ($record->status == 'shipped'){
+
+            switch ($record->descricao_status) {
+                case 'Pedido Cancelado':
+                case 'Produto Devolvido':
+                case 'Produto Devolvido com Avaria':
+                case 'Produto Não Devolvido':
+                case 'Produto Em Resgate':
+                case 'Pedido Reembolsado':
+                    $cssClass = 'adm-bg-red-50';
+                    break;
+
+            }
+
+            return $cssClass;
+
+        }
+
+    }
+
 }
