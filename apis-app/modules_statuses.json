@@ -1,7 +1,6 @@
 {
     "Index": true,
     "Mercadolivre": true,
-    "Pagarme": true,
     "System": true,
     "Sales": true,
     "PaymentMethods": true

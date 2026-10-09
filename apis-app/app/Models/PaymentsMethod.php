@@ -12,7 +12,7 @@ use Illuminate\Database\Eloquent\Model;
 /**
  * Class PaymentsMethod
  * 
- * @property int $payment_id
+ * @property int $payment_method_id
  * @property string $payment_name
  * @property string $payment_account_id
  * @property string $payment_key
@@ -26,15 +26,15 @@ use Illuminate\Database\Eloquent\Model;
 class PaymentsMethod extends Model
 {
 	protected $table = 'payments_methods';
-	protected $primaryKey = 'payment_id';
+	protected $primaryKey = 'payment_method_id';
 
 	protected $casts = [
 		'status' => 'bool'
 	];
 
-//	protected $hidden = [
-//		'payment_secret'
-//	];
+	protected $hidden = [
+		'payment_secret'
+	];
 
 	protected $fillable = [
 		'payment_name',

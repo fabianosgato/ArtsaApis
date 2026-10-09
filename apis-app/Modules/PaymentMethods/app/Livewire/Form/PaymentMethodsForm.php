@@ -56,11 +56,11 @@ class PaymentMethodsForm extends FormComponent
     {
 
         $paymentsMethod = PaymentsMethodRepository::updateOrCreate(
-            id:$data['payment_id'] ?? null,
+            id:$data['payment_method_id'] ?? null,
             values:$data
         );
 
-        if (!empty($data['payment_id'])) {
+        if (!empty($data['payment_method_id'])) {
             Session::flash('success', 'Módulo atualizado com sucesso!');
 
         } else {
@@ -79,7 +79,7 @@ class PaymentMethodsForm extends FormComponent
 
                 Tab::make('Informações do Método de Pagamento')->schema([
 
-                    Hidden::make('payment_id'),
+                    Hidden::make('payment_method_id'),
 
                     TextInput::make('payment_name')
                         ->label('Nome do Método')

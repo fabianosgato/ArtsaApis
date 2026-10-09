@@ -29,7 +29,6 @@ use Filament\Tables\Table;
 use Idea\Framework\Admin\Grids\Grid;
 use Idea\Framework\Repository\PaymentsMethods\PaymentsMethodRepository;
 
-
 final class PaymentMethodsGrid extends Grid
 {
 
@@ -84,7 +83,7 @@ final class PaymentMethodsGrid extends Grid
                     Action::make('edit')
                         ->label('Editar')
                         ->url(fn(PaymentsMethod $record): string => route('wsdadm.payments.edit', [
-                            'id' => $record->payment_id
+                            'id' => $record->payment_method_id
                         ])),
 
                     DeleteAction::make()

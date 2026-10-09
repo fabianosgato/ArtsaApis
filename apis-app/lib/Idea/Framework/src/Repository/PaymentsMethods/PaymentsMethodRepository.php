@@ -26,17 +26,22 @@ class PaymentsMethodRepository extends AbstractRepository
 
     protected static $model = PaymentsMethod::class;
 
+    /**
+     * Insere/Atualiza um Método de Pagamento
+     * @param int|null $id
+     * @param array $values
+     * @return \App\Models\PaymentsMethod
+     */
     public static function updateOrCreate(?int $id, array $values = []): PaymentsMethod
     {
 
         return self::getData()->updateOrCreate(
             attributes: [
-                'payment_id' => $id
+                'payment_method_id' => $id
             ],
             values: $values
         );
 
     }
-
 
 }
