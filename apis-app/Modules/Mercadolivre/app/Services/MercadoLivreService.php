@@ -17,10 +17,10 @@ class MercadoLivreService
 
     public function __construct()
     {
-        $this->baseUri      = config('services.mercadolivre.base_uri');
-        $this->clientId     = config('services.mercadolivre.client_id');
-        $this->clientSecret = config('services.mercadolivre.client_secret');
-        $this->redirectUri  = config('services.mercadolivre.redirect_uri');
+        $this->baseUri      = 'test';
+        $this->clientId     = 'teste-client-id';
+        $this->clientSecret = 'services.mercadolivre.client_secret';
+        $this->redirectUri  = 'services.mercadolivre.redirect_uri';
     }
 
     public function getAuthorizationUrl(): string

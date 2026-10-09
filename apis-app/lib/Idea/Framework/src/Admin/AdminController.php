@@ -36,31 +36,42 @@ class AdminController extends Controller
     {
 
         // Inicializa as rotas
-        $route = Route::getCurrentRoute()->getName();
+        $route = Route::getCurrentRoute();
 
-        // Valida a rota de nao e a login ou esta nula
-        if (($route != 'login') && ($route != null)) {
+        if ($route) {
 
-            // Botao insert nos grids
-            if (property_exists($this, 'buttonInsert'))
-                View::share('buttonInsert', $this->buttonInsert);
+            // Valida a rota de nao e a login ou esta nula
+            if (($route->getName() != 'login') && ($route->getName() != null)) {
 
-            if ($route != 'livewire.update') {
+                // Botao insert nos grids
+                if (property_exists($this, 'buttonInsert'))
+                    View::share('buttonInsert', $this->buttonInsert);
 
-                // Sempre irá pesquisar pela rota "index"
-                $sysModulesMenus = SysModulesMenu::query()
-                    ->where('menu_link', $route)
-                    ->first();
+                if ($route != 'livewire.update') {
 
-                if (!is_null($sysModulesMenus)) {
+                    // Sempre irá pesquisar pela rota "index"
+                    $sysModulesMenus = SysModulesMenu::query()
+                        ->where('menu_link', $route)
+                        ->first();
 
-                    if ($sysModulesMenus->menu_link != 'wsdadm.sysconfig') {
+                    if (!is_null($sysModulesMenus)) {
 
-                        // Cria a sessao do nome do módulo
-                        View::share('menuName', $sysModulesMenus->menu_name);
+                        if ($sysModulesMenus->menu_link != 'wsdadm.sysconfig') {
 
-                        if (Route::getCurrentRoute()->getActionMethod() == 'index') {
-                            View::share('actionInsert', "$route.insert");
+                            // Cria a sessao do nome do módulo
+                            View::share('menuName', $sysModulesMenus->menu_name);
+
+                            if (Route::getCurrentRoute()->getActionMethod() == 'index') {
+                                View::share('actionInsert', "$route.insert");
+
+                            } else {
+                                // Desativa o botao de inserir
+                                View::share('buttonInsert', false);
+
+                                // Remove a rota do botao
+                                View::share('actionInsert', "");
+
+                            }
 
                         } else {
                             // Desativa o botao de inserir
@@ -79,13 +90,6 @@ class AdminController extends Controller
                         View::share('actionInsert', "");
 
                     }
-
-                } else {
-                    // Desativa o botao de inserir
-                    View::share('buttonInsert', false);
-
-                    // Remove a rota do botao
-                    View::share('actionInsert', "");
 
                 }
 

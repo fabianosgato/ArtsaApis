@@ -8,10 +8,12 @@ apis-app/node_modules/
 apis-app/dist/
 apis-app/vendor/
 apis-app/public/vendor
-apis-app/.env
-apis-app/.env.example
 apis-app/storage
 apis-app/public/build
+apis-app/.phpunit.result.cache
+apis-app/.env
+apis-app/.env.example
+
 
 # Compiled Java class files
 *.class
@@ -53,3 +55,4 @@ Thumbs.db
 *.flv
 *.mov
 *.wmv
+

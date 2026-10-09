@@ -20,6 +20,10 @@
 
 use Illuminate\Support\Facades\Route;
 
+// Login na raiz
+Route::get('/', [\App\Http\Controllers\Auth\AuthenticatedSessionController::class, 'create'])
+    ->middleware('guest')->name('login');
+
 // Rotas para o "profile" do usuario
 Route::middleware('auth')->group(function () {
 
