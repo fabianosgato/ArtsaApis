@@ -109,7 +109,7 @@ class UserAuthenticatorIntegrationTest extends TestCase
 
         $authenticator->authenticate(
             $user->email,
-            'wrong-password'
+            'correct-password'
         );
 
     }
