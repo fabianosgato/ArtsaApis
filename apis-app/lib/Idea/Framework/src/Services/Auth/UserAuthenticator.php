@@ -4,10 +4,9 @@ declare(strict_types=1);
 namespace Idea\Framework\Services\Auth;
 
 use Idea\Framework\Interfaces\Auth\UserAuthenticatorInterface;
-use Idea\Framework\Repository\System\SysUserRepository;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Contracts\Auth\Authenticatable;
-use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 
 class UserAuthenticator implements UserAuthenticatorInterface
 {
@@ -17,16 +16,18 @@ class UserAuthenticator implements UserAuthenticatorInterface
     ): Authenticatable
     {
 
-        $user = SysUserRepository::getData()->where(
-            column: 'email',
-            operator: '=',
-            value: $email
-        );
+        $provider = Auth::guard()->getProvider();
+
+        $user = $provider->retrieveByCredentials([
+            'email' => $email,
+        ]);
 
         if (
             $user === null ||
-            !Hash::check($password, $user->password) ||
-            !$user->status
+            !$provider->validateCredentials($user, [
+                'password' => $password,
+            ]) ||
+            !($user->status ?? false)
         ) {
             throw new AuthenticationException(
                 'Credenciais inválidas.'
@@ -35,4 +36,5 @@ class UserAuthenticator implements UserAuthenticatorInterface
 
         return $user;
     }
+
 }
