@@ -36,16 +36,6 @@ class ApiAuthMiddleware
     public function handle(Request $request, Closure $next)
     {
 
-        // Lê o cabeçalho personalizado
-        $userHeader   = $request->header('x-api-user');
-        $apiKeyHeader = $request->header('x-api-key');
-
-        // Compara com valores definidos no .env
-        if ($userHeader !== env('API_USER') || $apiKeyHeader !== env('API_KEY')) {
-            // Retorna 401 se não corresponder
-            return response()->json(['message' => 'Unauthenticated user'], 401);
-        }
-
         // Continua a requisição caso a autenticação seja bem-sucedida
         return $next($request);
 
