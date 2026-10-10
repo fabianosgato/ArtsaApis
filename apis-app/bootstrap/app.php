@@ -12,14 +12,6 @@ return Application::configure(basePath: dirname(__DIR__))
     )
     ->withMiddleware(function (Middleware $middleware) {
 
-        // Aliases existentes
-        $middleware->alias([
-            'check.apikey' => \App\Http\Middleware\ApiAuthMiddleware::class
-        ]);
-
-        // API continua protegida por API Key
-        $middleware->appendToGroup('api', 'check.apikey');
-
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //
