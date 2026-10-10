@@ -2063,11 +2063,12 @@
             "dist": {
                 "type": "path",
                 "url": "lib/Idea/Framework",
-                "reference": "8c6103d954b602828dd45b61c93e0b7216454fb1"
+                "reference": "73034183b00b8f3f20d9f3843ec8e57c260b3b61"
             },
             "require": {
                 "ext-simplexml": "*",
                 "facade/ignition-contracts": "^1.0",
+                "laravel/sanctum": "^4.3",
                 "php": "^8.2"
             },
             "type": "library",
@@ -8284,12 +8285,12 @@
             "version": "v5.7.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/vlucas/phpdotenv.git",
+                "url": "https://github.com/phpdotenv/phpdotenv.git",
                 "reference": "301c07936b16d88628b126b01d082ba153cf4c40"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/vlucas/phpdotenv/zipball/301c07936b16d88628b126b01d082ba153cf4c40",
+                "url": "https://api.github.com/repos/phpdotenv/phpdotenv/zipball/301c07936b16d88628b126b01d082ba153cf4c40",
                 "reference": "301c07936b16d88628b126b01d082ba153cf4c40",
                 "shasum": ""
             },

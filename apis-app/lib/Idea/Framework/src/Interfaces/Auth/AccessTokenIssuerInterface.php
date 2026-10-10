@@ -1,13 +1,11 @@
 <?php
 /**
  * O UserAuthenticatorInterface autentica o usuário.
- * Já o AccessTokenIssuerInterface representa a capacidade de emitir um token para esse usuário.
+ * O AccessTokenIssuerInterface define o contrato para emissão
+ * de tokens de acesso.
  *
- * Essa separação permite que uma aplicação use Sanctum, enquanto outra pode fornecer uma implementação diferente, sem modificar o TokenService.
- *
- * O tipo Authenticatable é um contrato do próprio Laravel, adequado para a biblioteca reutilizável.
- * A implementação concreta da emissão, por sua vez, ficará na aplicação que utiliza o Sanctum.
- *
+ * A implementação concreta pode utilizar Sanctum ou outro
+ * mecanismo compatível, sem alterar o TokenService.
  */
 declare(strict_types=1);
 

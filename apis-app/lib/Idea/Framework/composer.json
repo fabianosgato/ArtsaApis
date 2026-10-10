@@ -16,7 +16,8 @@
     "require": {
         "php": "^8.2",
         "facade/ignition-contracts": "^1.0",
-        "ext-simplexml": "*"
+        "ext-simplexml": "*",
+        "laravel/sanctum": "^4.3"
     },
     "extra": {
         "laravel": {
