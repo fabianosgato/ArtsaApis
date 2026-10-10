@@ -7,11 +7,11 @@
 namespace App\Models;
 
 use Carbon\Carbon;
-use Illuminate\Database\Eloquent\Model;
+use Laravel\Sanctum\PersonalAccessToken as SanctumPersonalAccessToken;
 
 /**
  * Class SysPersonalAccessToken
- * 
+ *
  * @property int $id
  * @property string $tokenable_type
  * @property int $tokenable_id
@@ -25,27 +25,27 @@ use Illuminate\Database\Eloquent\Model;
  *
  * @package App\Models
  */
-class SysPersonalAccessToken extends Model
+class SysPersonalAccessToken extends SanctumPersonalAccessToken
 {
-	protected $table = 'sys_personal_access_tokens';
+    protected $table = 'sys_personal_access_tokens';
 
-	protected $casts = [
-		'tokenable_id' => 'int',
-		'last_used_at' => 'datetime',
-		'expires_at' => 'datetime'
-	];
+    protected $casts = [
+        'tokenable_id' => 'int',
+        'last_used_at' => 'datetime',
+        'expires_at' => 'datetime'
+    ];
 
-	protected $hidden = [
-		'token'
-	];
+    protected $hidden = [
+        'token'
+    ];
 
-	protected $fillable = [
-		'tokenable_type',
-		'tokenable_id',
-		'name',
-		'token',
-		'abilities',
-		'last_used_at',
-		'expires_at'
-	];
+    protected $fillable = [
+        'tokenable_type',
+        'tokenable_id',
+        'name',
+        'token',
+        'abilities',
+        'last_used_at',
+        'expires_at'
+    ];
 }

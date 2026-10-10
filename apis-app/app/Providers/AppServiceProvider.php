@@ -37,4 +37,5 @@ class AppServiceProvider extends ServiceProvider
         FilamentView::spa();
 
     }
+
 }
