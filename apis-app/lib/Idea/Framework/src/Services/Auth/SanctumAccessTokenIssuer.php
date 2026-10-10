@@ -1,0 +1,29 @@
+<?php
+
+declare(strict_types=1);
+
+namespace Idea\Framework\Services\Auth;
+
+use Idea\Framework\Interfaces\Auth\AccessTokenIssuerInterface;
+use Illuminate\Contracts\Auth\Authenticatable;
+use LogicException;
+
+class SanctumAccessTokenIssuer implements AccessTokenIssuerInterface
+{
+    public function issue(
+        Authenticatable $user,
+        string          $deviceName
+    ): string
+    {
+
+        if (!method_exists($user, 'createToken')) {
+            throw new LogicException(
+                'O usuário não suporta emissão de tokens via Sanctum.'
+            );
+        }
+
+        $accessToken = $user->createToken($deviceName);
+
+        return $accessToken->plainTextToken;
+    }
+}
