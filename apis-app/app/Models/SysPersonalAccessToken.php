@@ -28,24 +28,4 @@ use Laravel\Sanctum\PersonalAccessToken as SanctumPersonalAccessToken;
 class SysPersonalAccessToken extends SanctumPersonalAccessToken
 {
     protected $table = 'sys_personal_access_tokens';
-
-    protected $casts = [
-        'tokenable_id' => 'int',
-        'last_used_at' => 'datetime',
-        'expires_at' => 'datetime'
-    ];
-
-    protected $hidden = [
-        'token'
-    ];
-
-    protected $fillable = [
-        'tokenable_type',
-        'tokenable_id',
-        'name',
-        'token',
-        'abilities',
-        'last_used_at',
-        'expires_at'
-    ];
 }
