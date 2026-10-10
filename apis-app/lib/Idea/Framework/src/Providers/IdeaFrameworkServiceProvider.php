@@ -21,6 +21,12 @@ namespace Idea\Framework\Providers;
 use App\Models\SysConfigDatum;
 use Idea\Framework\Admin\Components\GridsTitlesCompoments;
 use Idea\Framework\Admin\Components\MenuBuilderComponent;
+use Idea\Framework\Interfaces\Auth\AccessTokenIssuerInterface;
+use Idea\Framework\Interfaces\Auth\TokenServiceInterface;
+use Idea\Framework\Interfaces\Auth\UserAuthenticatorInterface;
+use Idea\Framework\Services\Auth\SanctumAccessTokenIssuer;
+use Idea\Framework\Services\Auth\TokenService;
+use Idea\Framework\Services\Auth\UserAuthenticator;
 use Idea\Framework\View\Front\Breadcrumbs\BreadcrumbsManager;
 use Idea\Framework\View\Front\Breadcrumbs\Generator;
 use Illuminate\Support\Facades\Cache;
@@ -38,7 +44,7 @@ class IdeaFrameworkServiceProvider extends ServiceProvider
      */
     public function provides(): array
     {
-        return [BreadcrumbsManager::class];
+        return [];
     }
 
     /**
@@ -77,19 +83,25 @@ class IdeaFrameworkServiceProvider extends ServiceProvider
             key: 'idea'
         );
 
-        // Register Manager class singleton with the app container
-        $this->app->singleton(
-            BreadcrumbsManager::class,
-            config('idea.breadcrumbs.manager-class')
+
+        // Registra os serviços de autenticação e emissão de tokens
+        $this->app->bind(
+            UserAuthenticatorInterface::class,
+            UserAuthenticator::class
         );
 
-        // Register Generator class so it can be overridden
         $this->app->bind(
-            Generator::class,
-            config('idea.breadcrumbs.generator-class')
+            AccessTokenIssuerInterface::class,
+            SanctumAccessTokenIssuer::class
+        );
+
+        $this->app->bind(
+            TokenServiceInterface::class,
+            TokenService::class
         );
 
         $this->registerLivewireComponents();
+
     }
 
     /**
@@ -124,7 +136,6 @@ class IdeaFrameworkServiceProvider extends ServiceProvider
 
         // Load the routes/breadcrumbs.php file, or other configured file(s)
         $files = config('idea.breadcrumbs.files');
-
 
         if (!$files) {
             return;
