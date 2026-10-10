@@ -90,4 +90,28 @@ class UserAuthenticatorIntegrationTest extends TestCase
         );
     }
 
+    public function test_rejects_status_user(): void
+    {
+        // Arrange: cria um usuário real no banco.
+        $correctPassword = 'correct-password';
+
+        $user = User::factory()->create([
+            'status' => false,
+            'password' => Hash::make($correctPassword),
+        ]);
+
+        // Act + Assert: a senha incorreta deve gerar uma exceção.
+        $authenticator = new UserAuthenticator();
+
+        $this->expectException(
+            \Illuminate\Auth\AuthenticationException::class
+        );
+
+        $authenticator->authenticate(
+            $user->email,
+            'wrong-password'
+        );
+
+    }
+
 }
