@@ -9,9 +9,19 @@
  * A implementação concreta da emissão, por sua vez, ficará na aplicação que utiliza o Sanctum.
  *
  */
+declare(strict_types=1);
+
 namespace Idea\Framework\Interfaces\Auth;
+
+use Illuminate\Contracts\Auth\Authenticatable;
 
 interface AccessTokenIssuerInterface
 {
-
+    /**
+     * Issue an access token for an authenticated user.
+     */
+    public function issue(
+        Authenticatable $user,
+        string $deviceName
+    ): string;
 }
